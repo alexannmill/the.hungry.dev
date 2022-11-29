@@ -6,14 +6,13 @@
   flex-wrap: wrap;
 }
 
-.grid_div {
+.playing_field div {
   width: 20px;
   height: 20px;
 }
 
 .snake {
-  
-  color: darkgreen;
+  background-color: darkgreen;
 }
 
 .food {
