@@ -1,0 +1,22 @@
+.playing_field {
+  display: flex;
+  width: 600px;
+  height: 600px;
+  border: 2px black solid;
+  flex-wrap: wrap;
+}
+
+.grid_div {
+  width: 20px;
+  height: 20px;
+}
+
+.snake {
+  
+  color: darkgreen;
+}
+
+.food {
+  color: darkred;
+  border-radius: 50%;
+}
