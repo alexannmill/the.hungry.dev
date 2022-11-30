@@ -2,7 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- Set grid size
   const width = 25;
   // ---- Grabbing elements from the DOM
-  const playingField = document.getElementsByClassName("playing_field");
+  const playingField = document.getElementById("playing_field");
+  // const ctx = canvas.getContext("2d");
   const scoreDsp = document.querySelector("span");
   const startBtn = document.getElementById("start_btn");
 
@@ -20,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ---- Setting initial index
   let currentInd = 0;
-  let foodInd = 0;
+  let appleInd = 0;
   let snake = [2, 1, 0];
   let direction = 1;
   let score = 0;
@@ -31,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ---- Starting the game
   const start = (e) => {
     reset();
-    randomFood();
+    randomApple();
     direction = 1;
     scoreDsp.innerText = score;
     intervalTime = 1000;
@@ -49,10 +50,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const removeSnakeClass = (position) => {
     return positions[position].classList.remove("snake");
   };
-  // ---- Reset snake, food, score and and interval
+  // ---- Reset snake, apple, score and and interval
   const reset = () => {
     snake.forEach((i) => removeSnakeClass(i));
-    positions[foodInd].classList.remove("food");
+    positions[appleInd].classList.remove("apple");
     clearInterval(interval);
     score = 0;
   };
@@ -75,13 +76,13 @@ document.addEventListener("DOMContentLoaded", () => {
       return clearInterval(interval);
     }
 
-    if (positions[head + direction].classList.contains("food")) {
+    if (positions[head + direction].classList.contains("apple")) {
       positions[head].classList.remove("apple");
       addSnakeClass(tail);
       snake.push(tail);
-      randomFood();
+      randomApple();
       score++;
-      scoreDsp.textContent(score);
+      scoreDsp.innerText(score);
       clearInterval(interval);
       intervalTime = intervalTime * speed;
       interval = setInterval(outcome, intervalTime);
@@ -120,14 +121,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  const randomFood = () => {
-    foodInd = Math.floor(Math.random() * positions.length);
-    if (snake.includes(foodInd)) {
-      randomFood();
+  const randomApple = () => {
+    appleInd = Math.floor(Math.random() * positions.length);
+    if (snake.includes(appleInd)) {
+      randomApple();
     }
-    console.log("foodInd:", foodInd);
-    positions[foodInd].classList.add("food");
-    console.log("position[foodInd]:", positions[foodInd]);
+    console.log("appleInd:", appleInd);
+    positions[appleInd].classList.add("apple");
+    console.log("position[appleInd]:", positions[appleInd]);
   };
 
   // ------------------add alert and colour changes

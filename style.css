@@ -1,14 +1,14 @@
 .playing_field {
   display: flex;
-  width: 500px;
-  height: 500px;
+  width: 1600;
+  height: 70;
   border: 2px black solid;
   flex-wrap: wrap;
 }
 
 .playing_field div {
-  width: 20px;
-  height: 20px;
+  width: 10px;
+  height: 10px;
   border: 2px black solid;
 }
 
