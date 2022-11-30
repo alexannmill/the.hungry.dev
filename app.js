@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   // --- Set grid size
-  const width = 20;
+  const width = 25;
   // ---- Grabbing elements from the DOM
   const playingField = document.getElementsByClassName("playing_field");
   const scoreDsp = document.querySelector("span");
@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   const positions = document.querySelectorAll(".playing_field div");
   console.log("positions.length:", positions.length);
+
   // ---- Setting initial index
   let currentInd = 0;
   let foodInd = 0;
