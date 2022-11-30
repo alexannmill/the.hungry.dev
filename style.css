@@ -1,22 +1,29 @@
+
+/* Width adn height taking boarder into account */
 .playing_field {
+  background-color: rgb(28, 28, 28);
   display: flex;
-  width: 1600;
-  height: 70;
-  border: 2px black solid;
+  width: 624;
+  height: 94;
+  border: 1px black solid;
+  border-radius: 5%;
   flex-wrap: wrap;
 }
 
 .playing_field div {
   width: 10px;
   height: 10px;
-  border: 2px black solid;
+  border: 1px black solid;
+  border-radius: 24%;
 }
 
 .snake {
-  background-color: darkgreen;
+  background-color: rgba(110, 250, 110, 0.485);
+  border-radius: 25%;
 }
 
-.food {
-  color: darkred;
-  border-radius: 50%;
+.commit {
+
+  background-color: rgb(81, 255, 54);
+  border-radius: 25%;
 }

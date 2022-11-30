@@ -15,40 +15,36 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
   const days = document.querySelectorAll(".playing_field div");
-  console.log("days.length:", days.length);
 
   // ---- Setting initial index
   let currentInd = 0;
   let commitInd = 0;
   let snake = [2, 1, 0];
-  let x = 2;
-  let y = 6;
+  let direction = 1;
   let score = 0;
   let speed = 0.9;
   let intervalTime = 0;
   let interval = 0;
-
-  // ---- Starting the game
-  const start = (e) => {
-    reset();
-    randomCommit();
-    x = 2;
-    y = 6;
-    scoreDsp.innerText = score;
-    intervalTime = 1000;
-    snake = [2, 1, 0];
-    currentInd = 0;
-    snake.forEach((i) => {
-      days[i].classList.add("snake");
-    });
-    interval = setInterval(outcome, intervalTime);
-  };
 
   const addSnakeClass = (position) => {
     return days[position].classList.add("snake");
   };
   const removeSnakeClass = (position) => {
     return days[position].classList.remove("snake");
+  };
+
+  // ---- Starting the game
+  const start = (e) => {
+    reset();
+    randomCommit();
+    scoreDsp.innerText = score;
+    intervalTime = 700;
+    snake = [3, 2, 1, 0];
+    currentInd = 0;
+    snake.forEach((i) => {
+      addSnakeClass(i);
+    });
+    interval = setInterval(outcome, intervalTime);
   };
   // ---- Reset snake, food, score and and interval
   const reset = () => {
@@ -60,37 +56,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ---- checking against all outcomes in movement
   const outcome = () => {
-    console.log("snake:", snake);
     const head = snake[0];
     const tail = snake.pop();
-    console.log("width:", width);
-    console.log("direction:", direction);
+    removeSnakeClass(tail);
     if (
-      //snake hitting border;  top , bottom, left, right
-      (head + height >= width * width && direction === width) ||
-      (head - height <= 0 && direction === -width) ||
+      //snake hitting border;  bottom , top , left, right
+      (head + width >= width * height && direction === width) ||
+      (head - width <= 0 && direction === -width) ||
       (head % width === 0 && direction === 1) ||
       (head % width === width - 1 && direction === -1) ||
       //hitting itself
       days[head + direction].classList.contains("snake")
     ) {
+      snake.forEach((i) => removeSnakeClass(i));
       return clearInterval(interval);
     }
-
     if (days[head + direction].classList.contains("commit")) {
-      days[head].classList.remove("apple");
+      days[head + direction].classList.remove("commit");
       addSnakeClass(tail);
       snake.push(tail);
       randomCommit();
       score++;
-      scoreDsp.textContent(score);
+      scoreDsp.innerText = score;
       clearInterval(interval);
       intervalTime = intervalTime * speed;
       interval = setInterval(outcome, intervalTime);
+      return;
     }
-    removeSnakeClass(tail);
+
     snake.unshift(head + direction);
     addSnakeClass(head + direction);
+    return;
   };
 
   // ---- Link snake movements to key inputs
@@ -99,22 +95,22 @@ document.addEventListener("DOMContentLoaded", () => {
     switch (e.keyCode) {
       // up
       case 38:
-        y += 1;
+        direction = -width;
         break;
 
       // down
       case 40:
-        y -= 1;
+        direction = +width;
         break;
 
       // left
       case 37:
-        x -= 1;
+        direction = -1;
         break;
 
       // right
       case 39:
-        x += 1;
+        direction = 1;
         break;
 
       default:
@@ -127,9 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (snake.includes(commitInd)) {
       randomCommit();
     }
-    console.log("commitInd:", commitInd);
     days[commitInd].classList.add("commit");
-    console.log("position[commitInd]:", days[commitInd]);
   };
 
   // ------------------add alert and colour changes
