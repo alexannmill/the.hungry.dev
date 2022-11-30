@@ -1,7 +1,5 @@
 .playing_field {
   display: flex;
-  width: 500px;
-  height: 500px;
   border: 2px black solid;
   flex-wrap: wrap;
 }
