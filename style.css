@@ -1,7 +1,7 @@
 .playing_field {
   display: flex;
-  width: 600px;
-  height: 600px;
+  width: 500px;
+  height: 500px;
   border: 2px black solid;
   flex-wrap: wrap;
 }
@@ -9,6 +9,7 @@
 .playing_field div {
   width: 20px;
   height: 20px;
+  border: 2px black solid;
 }
 
 .snake {
