@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const scoreDsp = document.querySelector("span");
   const startBtn = document.getElementById("start_btn");
 
+
   // ---- Building playing field/grid
   for (let i = 0; i < width; i++) {
     for (let x = 0; x < width; x++) {
@@ -21,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ---- Setting initial index
   let currentInd = 0;
-  let appleInd = 0;
+  let foodInd = 0;
   let snake = [2, 1, 0];
   let direction = 1;
   let score = 0;
@@ -32,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ---- Starting the game
   const start = (e) => {
     reset();
-    randomApple();
+    randomFood();
     direction = 1;
     scoreDsp.innerText = score;
     intervalTime = 1000;
@@ -50,10 +51,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const removeSnakeClass = (position) => {
     return positions[position].classList.remove("snake");
   };
-  // ---- Reset snake, apple, score and and interval
+  // ---- Reset snake, food, score and and interval
   const reset = () => {
     snake.forEach((i) => removeSnakeClass(i));
-    positions[appleInd].classList.remove("apple");
+    positions[foodInd].classList.remove("food");
     clearInterval(interval);
     score = 0;
   };
@@ -76,13 +77,13 @@ document.addEventListener("DOMContentLoaded", () => {
       return clearInterval(interval);
     }
 
-    if (positions[head + direction].classList.contains("apple")) {
+    if (positions[head + direction].classList.contains("food")) {
       positions[head].classList.remove("apple");
       addSnakeClass(tail);
       snake.push(tail);
-      randomApple();
+      randomFood();
       score++;
-      scoreDsp.innerText(score);
+      scoreDsp.textContent(score);
       clearInterval(interval);
       intervalTime = intervalTime * speed;
       interval = setInterval(outcome, intervalTime);
@@ -121,14 +122,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  const randomApple = () => {
-    appleInd = Math.floor(Math.random() * positions.length);
-    if (snake.includes(appleInd)) {
-      randomApple();
+  const randomFood = () => {
+    foodInd = Math.floor(Math.random() * positions.length);
+    if (snake.includes(foodInd)) {
+      randomFood();
     }
-    console.log("appleInd:", appleInd);
-    positions[appleInd].classList.add("apple");
-    console.log("position[appleInd]:", positions[appleInd]);
+    console.log("foodInd:", foodInd);
+    positions[foodInd].classList.add("food");
+    console.log("position[foodInd]:", positions[foodInd]);
   };
 
   // ------------------add alert and colour changes
