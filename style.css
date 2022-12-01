@@ -1,29 +1,33 @@
 
 /* Width adn height taking boarder into account */
 .playing_field {
-  background-color: rgb(28, 28, 28);
+  background-color: rgb(35, 35, 35);
   display: flex;
-  width: 624;
-  height: 94;
-  border: 1px black solid;
-  border-radius: 5%;
+  width: 780;
+  height: 120;
+  
   flex-wrap: wrap;
 }
 
 .playing_field div {
-  width: 10px;
-  height: 10px;
-  border: 1px black solid;
-  border-radius: 24%;
+  width: 12px;
+  height: 12px;
+  background-color: rgb(44, 44, 44);
+  margin: 1.5px;
+  border-radius: 25%;
 }
 
 .snake {
-  background-color: rgba(110, 250, 110, 0.485);
+  background-color: rgba(110, 250, 110, 0.485) !important;
   border-radius: 25%;
 }
 
 .commit {
-
-  background-color: rgb(81, 255, 54);
+  background-color: rgb(81, 255, 54) !important;
   border-radius: 25%;
+}
+
+
+#start_btn {
+
 }
