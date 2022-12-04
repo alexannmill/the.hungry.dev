@@ -1,5 +1,11 @@
 
 /* Width adn height taking boarder into account */
+body {
+  font-family: monospace;
+  font-size: large;
+}
+
+
 .playing_field {
   background-color: rgb(35, 35, 35);
   display: flex;
@@ -29,5 +35,22 @@
 
 
 #start_btn {
+  background-color: rgb(81, 255, 54) !important;
+  color: black;
+  border-radius: 8px;
+  width: 100px;
+  font-family: monospace;
+  font-family: monospace;
+}
 
+.score_start {
+  display: flex;
+  background-color: rgb(44, 44, 44);
+  width: 780px;
+  padding: 2px;
+  justify-content: space-around;
+}
+
+#score_div {
+  color: white;
 }
