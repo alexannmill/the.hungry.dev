@@ -46,7 +46,7 @@ body {
 .score_start {
   display: flex;
   background-color: rgb(44, 44, 44);
-  width: 780px;
+  width: 776px;
   padding: 2px;
   justify-content: space-around;
 }

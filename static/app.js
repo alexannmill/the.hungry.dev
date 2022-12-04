@@ -130,6 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const reset = () => {
     score = 0;
+    scoreDsp.innerText = score;
     days.forEach((i) => i.classList.remove("snake"));
     days.forEach((i) => i.classList.remove("commit"));
     clearInterval(interval);
