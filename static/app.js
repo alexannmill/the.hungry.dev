@@ -1,3 +1,11 @@
+const {
+  reset,
+  addSnakeClass,
+  removeSnakeClass,
+  randomCommit,
+  endGame,
+} = require("./helpers");
+
 document.addEventListener("DOMContentLoaded", () => {
   // --- Set grid size
   const width = 52;
@@ -26,16 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let intervalTime = 0;
   let interval = 0;
 
-  const addSnakeClass = (position) => {
-    return days[position].classList.add("snake");
-  };
-  const removeSnakeClass = (position) => {
-    return days[position].classList.remove("snake");
-  };
-
   // ---- Starting the game
   const start = (e) => {
-    // reset();
     randomCommit();
     randomCommit();
     randomCommit();
@@ -50,14 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
       addSnakeClass(i);
     });
     interval = setInterval(outcome, intervalTime);
-  };
-
-  // ---- Reset snake, food, score and and interval
-  const reset = () => {
-    score = 0;
-    days.forEach((i) => i.classList.remove("snake"));
-    days.forEach((i) => i.classList.remove("commit"));
-    clearInterval(interval);
   };
 
   // ---- checking against all outcomes in movement
@@ -121,22 +113,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  const randomCommit = () => {
-    commitInd = Math.floor(Math.random() * days.length);
-    if (
-      snake.includes(commitInd) ||
-      days[commitInd].classList.contains("commit")
-    ) {
-      randomCommit();
-    }
-    days[commitInd].classList.add("commit");
-  };
-
-  // ------------------add alert and colour changes
-  const endGame = () => {
-    reset();
-  };
-
   document.addEventListener("keyup", movement);
   startBtn.addEventListener("click", start);
 });
+
+module.exports = {
+  score,
+};
