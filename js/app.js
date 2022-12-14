@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ---- Global vars, setting initial game
   let currentInd = 0;
   let commitInd = 0;
-  let snake = [2, 1, 0];
+  let snake = [3, 2, 1, 0];
   let direction = 1;
   let score = 0;
   let speed = 0.9;
@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ---- Starting the game
   const start = (e) => {
+    reset();
     randomCommit();
     randomCommit();
     randomCommit();
@@ -58,9 +59,11 @@ document.addEventListener("DOMContentLoaded", () => {
       (head % width === width - 1 && direction === -1) ||
       //hitting itself
       days[head + direction].classList.contains("snake")
-    ) {
+      ) {
+      console.log("hit side or self")
       endGame();
-      return reset();
+      reset()
+      return ;
     }
     // Rendering snake movement
     const tail = snake.pop();
@@ -81,41 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
   };
-  // ---- Adding and removing snake class
-  const addSnakeClass = (position) => {
-    return days[position].classList.add("snake");
-  };
-  const removeSnakeClass = (position) => {
-    days[position].classList.remove("snake");
-    days[position].removeAttribute("class");
-    return
-  };
 
-  // ---- Random commit within playing field
-  const randomCommit = () => {
-    commitInd = Math.floor(Math.random() * days.length);
-    if (
-      snake.includes(commitInd) ||
-      days[commitInd].classList.contains("commit")
-    ) {
-      randomCommit();
-    }
-    days[commitInd].classList.add("commit");
-  };
-
-  // ---- reset vars at initial or end of game
-  const reset = () => {
-    score = 0;
-    scoreDsp.innerText = score;
-    days.forEach((i) => i.classList.remove("snake"));
-    days.forEach((i) => i.classList.remove("commit"));
-    clearInterval(interval);
-  };
-
-  // ------------------add alert and colour changes
-  const endGame = () => {
-    alert(`Game Over, Final score = ${score}`);
-  };
 
   // ---- Link snake movements to key inputs
   const movement = (e) => {
