@@ -7,16 +7,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const scoreDsp = document.querySelector("span");
   const startBtn = document.getElementById("start_btn");
 
-  // ---- Building playing field/grid
-  // const buildgame = () => {
+
   for (let x = 0; x < width; x++) {
     for (let y = 0; y < height; y++) {
       const innerDiv = document.createElement("div");
       playingField.appendChild(innerDiv);
     }
   }
-  // }
-  // buildgame();
+
   const days = document.querySelectorAll(".playing_field div");
 
   // ---- Global vars, setting initial game
