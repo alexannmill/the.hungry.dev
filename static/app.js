@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let snake = [3, 2, 1, 0];
   let direction = 1;
   let score = 0;
-  let speed = 0.9;
+  let speed = 0.2;
   let intervalTime = 0;
   let interval = 0;
 

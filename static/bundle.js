@@ -72,7 +72,9 @@
             return days[position].classList.add("snake");
           };
           const removeSnakeClass = (position) => {
-            return days[position].classList.remove("snake");
+            days[position].classList.remove("snake");
+            days[position].removeAttribute("class");
+            return;
           };
 
           // ---- Random commit within playing field
@@ -136,7 +138,9 @@
               score++;
               scoreDsp.innerText = score;
               clearInterval(interval);
-              interval = setInterval(outcome, intervalTime * speed);
+              intervalTime = intervalTime * speed
+              interval = setInterval(outcome, intervalTime);
+              console.log("interval:", intervalTime);
               return;
             }
           };
