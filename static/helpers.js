@@ -38,9 +38,3 @@
     alert(`Game Over, Final score = ${score}`);
     reset()
   };
-
-module.exports = {
-  addSnakeClass,
-  removeSnakeClass,
-  randomCommit,
-};

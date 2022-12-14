@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const scoreDsp = document.querySelector("span");
   const startBtn = document.getElementById("start_btn");
 
-
   for (let x = 0; x < width; x++) {
     for (let y = 0; y < height; y++) {
       const innerDiv = document.createElement("div");
@@ -57,11 +56,11 @@ document.addEventListener("DOMContentLoaded", () => {
       (head % width === width - 1 && direction === -1) ||
       //hitting itself
       days[head + direction].classList.contains("snake")
-      ) {
-      console.log("hit side or self")
+    ) {
+      console.log("hit side or self");
       endGame();
-      reset()
-      return ;
+      reset();
+      return;
     }
     // Rendering snake movement
     const tail = snake.pop();
@@ -82,7 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
   };
-
 
   // ---- Link snake movements to key inputs
   const movement = (e) => {
