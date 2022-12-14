@@ -30,6 +30,7 @@ const reset = () => {
 // ------------------add alert and colour changes
 const endGame = () => {
   alert(`Game Over, Final score = ${score}`);
+  reset();
 };
 
 module.exports = {
