@@ -9,12 +9,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const startBtn = document.getElementById("start_btn");
 
   // ---- Building playing field/grid
-  for (let x = 0; x < width; x++) {
-    for (let y = 0; y < height; y++) {
-      const innerDiv = document.createElement("div");
-      playingField.appendChild(innerDiv);
+  // const buildgame = () => {
+    for (let x = 0; x < width; x++) {
+      for (let y = 0; y < height; y++) {
+        const innerDiv = document.createElement("div");
+        playingField.appendChild(innerDiv);
+      }
     }
-  }
+  // }
+  // buildgame();
   const days = document.querySelectorAll(".playing_field div");
 
   // ---- Global vars, setting initial game
@@ -26,26 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let speed = 0.9;
   let intervalTime = 0;
   let interval = 0;
-
-  // ---- Adding and removing snake class
-  const addSnakeClass = (position) => {
-    return days[position].classList.add("snake");
-  };
-  const removeSnakeClass = (position) => {
-    return days[position].classList.remove("snake");
-  };
-
-  // ---- Random commit within playing field
-  const randomCommit = () => {
-    commitInd = Math.floor(Math.random() * days.length);
-    if (
-      snake.includes(commitInd) ||
-      days[commitInd].classList.contains("commit")
-    ) {
-      randomCommit();
-    }
-    days[commitInd].classList.add("commit");
-  };
 
   // ---- Starting the game
   const start = (e) => {
@@ -129,19 +112,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  const reset = () => {
-    score = 0;
-    scoreDsp.innerText = score;
-    days.forEach((i) => i.classList.remove("snake"));
-    days.forEach((i) => i.classList.remove("commit"));
-    clearInterval(interval);
-  };
-
-  // ------------------add alert and colour changes
-  const endGame = () => {
-    alert(`Game Over, Final score = ${score}`);
-  };
-
   document.addEventListener("keyup", movement);
   startBtn.addEventListener("click", start);
 });
@@ -179,6 +149,7 @@ const reset = () => {
 // ------------------add alert and colour changes
 const endGame = () => {
   alert(`Game Over, Final score = ${score}`);
+  reset();
 };
 
 module.exports = {

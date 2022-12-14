@@ -8,12 +8,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const startBtn = document.getElementById("start_btn");
 
   // ---- Building playing field/grid
+  // const buildgame = () => {
   for (let x = 0; x < width; x++) {
     for (let y = 0; y < height; y++) {
       const innerDiv = document.createElement("div");
       playingField.appendChild(innerDiv);
     }
   }
+  // }
+  // buildgame();
   const days = document.querySelectorAll(".playing_field div");
 
   // ---- Global vars, setting initial game
@@ -77,6 +80,41 @@ document.addEventListener("DOMContentLoaded", () => {
       interval = setInterval(outcome, intervalTime * speed);
       return;
     }
+  };
+  // ---- Adding and removing snake class
+  const addSnakeClass = (position) => {
+    return days[position].classList.add("snake");
+  };
+  const removeSnakeClass = (position) => {
+    days[position].classList.remove("snake");
+    days[position].removeAttribute("class");
+    return
+  };
+
+  // ---- Random commit within playing field
+  const randomCommit = () => {
+    commitInd = Math.floor(Math.random() * days.length);
+    if (
+      snake.includes(commitInd) ||
+      days[commitInd].classList.contains("commit")
+    ) {
+      randomCommit();
+    }
+    days[commitInd].classList.add("commit");
+  };
+
+  // ---- reset vars at initial or end of game
+  const reset = () => {
+    score = 0;
+    scoreDsp.innerText = score;
+    days.forEach((i) => i.classList.remove("snake"));
+    days.forEach((i) => i.classList.remove("commit"));
+    clearInterval(interval);
+  };
+
+  // ------------------add alert and colour changes
+  const endGame = () => {
+    alert(`Game Over, Final score = ${score}`);
   };
 
   // ---- Link snake movements to key inputs
