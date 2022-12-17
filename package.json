@@ -1,7 +1,7 @@
 {
   "name": "the-very-hungry-dev",
   "version": "1.0.0",
-  "description": "## Inspired by my favorite childhood book.",
+  "description": "## Github commit themed snake game",
   "main": "app.js",
   "type": "module",
   "scripts": {
@@ -23,5 +23,8 @@
     "@babel/node": "^7.20.5",
     "@babel/plugin-transform-modules-commonjs": "^7.19.6",
     "@babel/preset-env": "^7.20.2"
+  },
+  "dependencies": {
+    "the-very-hungry-dev": "^1.0.0"
   }
 }
