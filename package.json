@@ -1,6 +1,6 @@
 {
   "name": "the-very-hungry-dev",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "## Github commit themed snake game",
   "main": "app.js",
   "type": "module",
